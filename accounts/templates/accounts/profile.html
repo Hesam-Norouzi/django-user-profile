@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>پروفایل کاربر</h2>
+  <ul>
+    <li>نام کاربری: {{ user.username }}</li>
+    <li>ایمیل: {{ user.email }}</li>
+    <li>تاریخ عضویت: {{ user.date_joined }}</li>
+  </ul>
+{% if user.profile_image %}
+  <img src="{{ user.profile_image.url }}" alt="Profile Image">
+{% else %}
+  <img src="/media/profile_images/default.jpg" alt="Default Image">
+{% endif %}
+
+{% endblock %}
+{# 
+Profile page template for user account details
+
+This template displays:
+- Username
+- Email address 
+- Date joined
+- Profile image (with default fallback)
+
+Extends base.html template and uses static files
+#}

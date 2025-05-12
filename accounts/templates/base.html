@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Projects</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>سلام {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">خروج</button>
+        </form>
+        <a href="{% url 'home' %}">خانه</a> | 
+        <a href="{% url 'profile' %}">پروفایل</a> | 
+        <a href="{% url 'edit_profile' %}">ویرایش حساب</a>
+
+    {% else %}
+        <a href="{% url 'login' %}">ورود</a> |
+        <a href="{% url 'register' %}">ثبت‌نام</a>
+    {% endif %}
+
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

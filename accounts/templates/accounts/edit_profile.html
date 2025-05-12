@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>ویرایش حساب کاربری</h2>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">ذخیره</button>
+</form>
+
+{% if user.profile_image %}
+  <p>تصویر فعلی:</p>
+  <img src="{{ user.profile_image.url }}" width="150">
+{% endif %}
+
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
