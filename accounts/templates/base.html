@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mini Projects</title>
+    <title>Auth</title>
 </head>
 <body>
     {% if user.is_authenticated %}
@@ -12,8 +12,8 @@
         </form>
         <a href="{% url 'home' %}">خانه</a> | 
         <a href="{% url 'profile' %}">پروفایل</a> | 
-        <a href="{% url 'edit_profile' %}">ویرایش حساب</a>
-
+        <a href="{% url 'edit_profile' %}">ویرایش حساب</a> |
+        <a href="{% url 'logout' %}">خروج</a>
     {% else %}
         <a href="{% url 'login' %}">ورود</a> |
         <a href="{% url 'register' %}">ثبت‌نام</a>

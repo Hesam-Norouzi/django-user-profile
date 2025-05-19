@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 def register_view(request):
     if request.method == 'POST':
@@ -24,21 +23,6 @@ def home_view(request):
 def profile_view(request):
     user = request.user
     return render(request, 'accounts/profile.html', {'user': user})
-
-
-User = get_user_model()
-
-# @login_required
-# def profile_edit_view(request):
-#     if request.method == 'POST':
-#         user = request.user
-#         user.username = request.POST['username']
-#         user.email = request.POST['email']
-#         user.save()
-#         messages.success(request, 'Profile updated successfully.')
-#         return redirect('edit_profile')
-
-#     return render(request, 'accounts/edit_profile.html')
 
 
 @login_required
