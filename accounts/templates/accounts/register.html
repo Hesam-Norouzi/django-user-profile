@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ثبت‌نام</title>
-</head>
-<body>
-    <h2>ثبت‌نام</h2>
-    <form method="post">
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">ثبت‌نام</h2>
+    
+    <form method="post" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">ثبت‌نام</button>
+        
+        {% for field in form %}
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <div class="text-danger">
+                {{ field.errors }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-primary">ثبت‌نام</button>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}

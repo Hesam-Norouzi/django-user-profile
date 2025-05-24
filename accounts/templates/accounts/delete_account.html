@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h2>Delete Account</h2>
-  <p>Are you sure you want to delete your account? This action cannot be undone.</p>
-  
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete My Account</button>
-    <a href="{% url 'profile' %}">Cancel</a>
-  </form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card border-danger shadow-sm" style="max-width: 500px;">
+    <div class="card-header bg-danger text-white">
+      <h5 class="mb-0">⚠️ Delete Account</h5>
+    </div>
+    <div class="card-body">
+      <p>Are you sure you want to delete your account? This action <strong>cannot</strong> be undone.</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-danger">Yes, Delete My Account</button>
+          <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

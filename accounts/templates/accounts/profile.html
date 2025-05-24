@@ -2,16 +2,24 @@
 {% load static %}
 
 {% block content %}
-  <h2>پروفایل کاربر</h2>
-  <ul>
-    <li>نام کاربری: {{ user.username }}</li>
-    <li>ایمیل: {{ user.email }}</li>
-    <li>تاریخ عضویت: {{ user.date_joined }}</li>
-  </ul>
-{% if user.profile_image %}
-  <img src="{{ user.profile_image.url }}" alt="Profile Image">
-{% else %}
-  <img src="/media/profile_images/default.jpg" alt="Default Image">
-{% endif %}
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-sm w-100" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">پروفایل کاربر</h5>
+    </div>
+    <div class="card-body text-center">
+      {% if user.profile_image %}
+        <img src="{{ user.profile_image.url }}" alt="Profile Image" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+      {% else %}
+        <img src="/media/profile_images/default.jpg" alt="Default Image" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+      {% endif %}
 
+      <ul class="list-group list-group-flush text-start mt-3">
+        <li class="list-group-item"><strong>نام کاربری:</strong> {{ user.username }}</li>
+        <li class="list-group-item"><strong>ایمیل:</strong> {{ user.email }}</li>
+        <li class="list-group-item"><strong>تاریخ عضویت:</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

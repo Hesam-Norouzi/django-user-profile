@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h2>ویرایش حساب کاربری</h2>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-sm w-100" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">ویرایش حساب کاربری</h5>
+    </div>
+    <div class="card-body">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">ذخیره</button>
-</form>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">ذخیره</button>
+      </form>
 
-{% if user.profile_image %}
-  <p>تصویر فعلی:</p>
-  <img src="{{ user.profile_image.url }}" width="150">
-{% endif %}
-
-{% if messages %}
-  <ul>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
+      {% if user.profile_image %}
+        <div class="mt-4">
+          <p>تصویر فعلی:</p>
+          <img src="{{ user.profile_image.url }}" class="img-thumbnail" style="max-width: 150px;">
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}
