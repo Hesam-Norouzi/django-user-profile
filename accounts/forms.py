@@ -16,7 +16,13 @@ class CustomUserCreationForm(UserCreationForm):
         return email
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'profile_image')
+        fields = ['profile_image', 'birth_date', 'phone_number']
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}), 
+        }

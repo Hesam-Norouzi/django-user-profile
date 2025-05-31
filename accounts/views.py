@@ -35,11 +35,17 @@ def profile_edit_view(request):
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
+            request.user.first_name = form.cleaned_data['first_name']
+            request.user.last_name = form.cleaned_data['last_name']
+            request.user.save()
             messages.success(request, 'Profile updated successfully.')
             return redirect('edit_profile')
         
     else:
-            form = CustomUserChangeForm(instance=request.user)
+            form = CustomUserChangeForm(instance=request.user, initial={
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+        })
 
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
