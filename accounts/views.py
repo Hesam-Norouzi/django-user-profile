@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,8 @@ def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            send_welcome_email(user)
             messages.success(request, "✅ Registration successful. You can now log in.")
             return redirect('login')
         
@@ -42,7 +44,6 @@ def profile_edit_view(request):
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
 
-from django.contrib.auth import logout
 
 @login_required
 def delete_account_view(request):
@@ -53,3 +54,13 @@ def delete_account_view(request):
         messages.success(request, 'Your account has been deleted.')
         return redirect('login')
     return render(request, 'accounts/delete_account.html')
+
+
+def send_welcome_email(user):
+    send_mail(
+        subject="Welcome to our website!",
+        message="Thank you for registering on our website.",
+        from_email="m.hesam.zbi@gmail.com",
+        recipient_list=[user.email],
+        fail_silently=False,
+    )

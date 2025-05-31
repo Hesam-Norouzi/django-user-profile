@@ -5,7 +5,7 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card shadow-sm w-100" style="max-width: 600px;">
     <div class="card-header bg-primary text-white">
-      <h5 class="mb-0">پروفایل کاربر</h5>
+      <h5 class="mb-0">User Profile</h5>
     </div>
     <div class="card-body text-center">
       {% if user.profile_image %}
@@ -15,9 +15,9 @@
       {% endif %}
 
       <ul class="list-group list-group-flush text-start mt-3">
-        <li class="list-group-item"><strong>نام کاربری:</strong> {{ user.username }}</li>
-        <li class="list-group-item"><strong>ایمیل:</strong> {{ user.email }}</li>
-        <li class="list-group-item"><strong>تاریخ عضویت:</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</li>
+        <li class="list-group-item"><strong>Username :</strong> {{ user.username }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+        <li class="list-group-item"><strong>Join Date :</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</li>
       </ul>
     </div>
   </div>
