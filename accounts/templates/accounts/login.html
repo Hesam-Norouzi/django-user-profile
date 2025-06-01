@@ -20,7 +20,9 @@
             </div>
         {% endfor %}
 
-        <button type="submit" class="btn btn-success">ورود</button>
+        <button type="submit" class="btn btn-success">Login</button>
+        <a class="btn btn-secondary" href="{% url 'password_reset' %}">Forget Password?</a>
+
     </form>
 </div>
 {% endblock %}

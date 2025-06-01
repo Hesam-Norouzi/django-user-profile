@@ -39,7 +39,7 @@ def profile_edit_view(request):
             request.user.last_name = form.cleaned_data['last_name']
             request.user.save()
             messages.success(request, 'Profile updated successfully.')
-            return redirect('edit_profile')
+            return redirect('profile')
         
     else:
             form = CustomUserChangeForm(instance=request.user, initial={

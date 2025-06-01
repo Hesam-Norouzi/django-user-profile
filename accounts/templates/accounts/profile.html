@@ -17,13 +17,20 @@
       <ul class="list-group list-group-flush text-start mt-3">
         <li class="list-group-item"><strong>Username :</strong> {{ user.username }}</li>
         <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
-        <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
-        <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
-        <li class="list-group-item"><strong>Phone Number:</strong> {{ user.profile.phone_number }}</li>
-        <li class="list-group-item"><strong>Birth Date:</strong> {{ user.profile.birth_date|date:"Y-m-d" }}</li>
+        <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name|default:"-" }}</li>
+        <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name|default:"-" }}</li>
+        <li class="list-group-item"><strong>Phone Number:</strong> {{ user.phone_number|default:"-" }}</li>
+        <li class="list-group-item"><strong>Birth Date:</strong> {{ user.birth_date|date:"Y-m-d"|default:"-" }}</li>
         <li class="list-group-item"><strong>Join Date :</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</li>
       </ul>
     </div>
+    <div class="d-flex justify-content-center mt-4">
+      <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary me-2">Edit Profile</a>
+      <a href="{% url 'password_change' %}" class="btn btn-outline-secondary me-2">Change Password</a>
+      <a href="{% url 'delete_account' %}" class="btn btn-outline-danger">Delete Account</a>
+    </div>
+    
   </div>
+  
 </div>
 {% endblock %}
